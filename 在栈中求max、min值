@@ -1,0 +1,40 @@
+#先sorted排序，后pop(0) pop函数是按索引位置删除，返回的是元素值 。。。。删除操作的还有del() remove() 
+
+del()是按元素删除，没有返回值
+remove()按索引值或者索引一个范围删除，删除的是变量不是删除的元素，元素由python的回收机制generational collection 回收。
+
+class MinStack:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.stack = []
+
+
+    def push(self, x: int) -> None:
+        return self.stack.append(x)
+
+    def pop(self) -> None:
+        return self.stack.pop()
+
+    def top(self) -> int:
+        #可以嵌套
+        stack = sorted(self.stack)
+        stack = list(reversed(self.stack))
+        topx = stack.pop(0)
+        return topx
+
+    def min(self) -> int:
+        #不可以嵌套
+        stack = sorted(self.stack)
+        minx = stack.pop(0)
+        return minx
+
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(x)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.min()
