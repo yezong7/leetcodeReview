@@ -1,0 +1,29 @@
+输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
+
+#比较容易想到的是用辅助栈 来做中转，然后倒序输出。
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reversePrint(self, head: ListNode) -> List[int]:
+        stack = []
+        while head:
+            stack.append(head.val)
+            head = head.next
+        return stack[::-1]
+
+
+
+法二： 用递归 加回溯
+这里有pyhton的回溯特性,这个暂时不清楚20200614 ，如何回溯的？ +号是什么意思
+递归本质就是栈结构？
+先递归输出本节点的后面节点，再输出本节点，反转节点。
+
+
+class Solution:
+    def reversePrint(self, head: ListNode) -> List[int]:
+        return self.reversePrint(head.next)+[head.val] if head else []
