@@ -1,0 +1,9 @@
+输入: s = "abcdefg", k = 2
+输出: "cdefgab"
+
+#通过字符串的切片来快速操作
+class Solution:
+    def reverseLeftWords(self, s: str, n: int) -> str:
+        d = ''
+        d = s[n:]+s[:n]
+        return d
