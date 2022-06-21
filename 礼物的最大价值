@@ -1,0 +1,21 @@
+在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。
+给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？
+
+ 
+
+
+class Solution:
+    def maxValue(self, grid: List[List[int]]) -> int:
+        #具有递归性质，可写出递归式子。
+        #开辟一个和grid 相同大小的value矩阵，记录得到的价值。每个格子的值 = 左边、上边中最大的一个。得到value矩阵，那么右下角的值就是最大值。
+        #设f(i,j)为礼物的价值，则 f（i，j） = max{grid(i,j-1),grid(i-1,j)} + grid(i,j)
+        #动态规划相比递归，递归的话会重复计算，占用很多内存。
+
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if i == 0 and j == 0: continue
+                if i == 0: grid[i][j] += grid[i][j - 1]
+                elif j == 0: grid[i][j] += grid[i - 1][j]
+                else: grid[i][j] += max(grid[i][j - 1], grid[i - 1][j])
+        return grid[-1][-1]
+
