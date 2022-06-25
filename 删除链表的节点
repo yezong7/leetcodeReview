@@ -1,0 +1,22 @@
+#注意while的 使用 。while 作为一个循环存在起到一个遍历的作用
+
+
+
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    def deleteNode(self, head: ListNode, val: int) -> ListNode:
+        if head.val == val: return head.next
+        pre = head
+        curr = head.next
+        while curr and curr.val != val:
+            pre = curr 
+            curr = curr.next
+        if curr:
+            pre.next =  curr.next
+        return head
