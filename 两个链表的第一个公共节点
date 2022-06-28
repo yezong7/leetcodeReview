@@ -1,0 +1,19 @@
+输入两个链表，找出它们的第一个公共节点。
+
+#比较巧思。设A长a  B长b  公共部分长c  则，a-c表示 A中公共部分之前的  b-c  同理
+#通过遍历的次数来控制值是否相同，A遍历A和b-c   B遍历B和a-c 。则a+（b-c） 和b+（a-c）。那么当遍历暂停时候，要么在公共点处 要么在末尾。
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        A, B = headA, headB
+        while A != B:
+            A = A.next if A else headB
+            B = B.next if B else headA
+        return A
