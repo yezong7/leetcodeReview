@@ -1,0 +1,21 @@
+输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串"I am a student. "，则输出"student. a am I"。
+#检测空格 加 栈 如果由空格则将他之前的入栈，通过动态设置range范围来控制每次只入栈一个联系的单词。 s.remove 处理掉多余的空格，s.strip 处理掉首尾的空格。
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        #检测空格+栈   
+        s = s.strip()
+        stack = []
+        tmp = ' '
+        j= 0
+        for i in range(j,len(list(s))):
+            if s[i]==' ':
+                cur = s[j:i:]
+                j = i +1
+                stack.append(cur)
+        stack.append(s[j::])
+        while '' in stack:stack.remove('')
+        while stack:
+            tmp +=  stack.pop()+' '
+        tmp = tmp.strip()
+        return tmp
